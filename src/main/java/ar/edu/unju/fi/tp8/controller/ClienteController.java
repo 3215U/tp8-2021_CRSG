@@ -1,11 +1,15 @@
 package ar.edu.unju.fi.tp8.controller;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.tp8.models.Cliente;
+import ar.edu.unju.fi.tp8.models.Producto;
 import ar.edu.unju.fi.tp8.service.IClienteService;
 
 
@@ -41,6 +46,56 @@ public class ClienteController {
 		model.addObject("clientes",clienteService.obtenerClientes());
 		return model;
 	}
+	
+	@PostMapping("/producto-guardar")
+	public ModelAndView guardarProductoPage(@Valid @ModelAttribute("producto") Producto producto,BindingResult resultadoValidacion){
+		//ModelAndView model = new ModelAndView("resultado-producto");
+		ModelAndView modelView;
+		if(resultadoValidacion.hasErrors()) {//si tiene errores
+		modelView= new ModelAndView("nuevo-clientee");
+		//la lista para mostrar sucursales
+		List<Cliente> clientes=clienteService.getClientePorId();
+		modelView.addObject(producto, producto);
+		return modelView;
+		}else {//no hay errores
+			ModelAndView modelView = new ModelAndView("resultado-cliente");
+			clienteService.guardarCliente(cliente);
+			modelView.addObject("clientes",clienteService.obtenerClientes());
+			return modelView;
+		
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping("/cliente-cuentas")
 	public ModelAndView getClientesCuentasPage() {

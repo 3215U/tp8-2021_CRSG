@@ -17,6 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,12 +42,15 @@ public class Cliente {
 	@Column(name = "cli_tipoDocumento")
 	private String tipoDocumento;
 	
+	@Size(min=7, max=8, message="El numero de DNI debe tener entre 7 y 9 numeros")
 	@Column(name = "cli_nroDocumento")
 	private int nroDocumento;
 	
+	@NotNull(message="Debe tener un Nombre y Apellido")
 	@Column(name = "cli_nombreApellido")
 	private String nombreApellido;
 	
+	@Email(message="tiene @")
 	@Column(name="cli_email")
 	private String email;
 	

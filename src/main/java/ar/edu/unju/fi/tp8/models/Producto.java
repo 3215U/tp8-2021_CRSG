@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -29,6 +30,7 @@ public class Producto {
 	@Column(name = "prod_nombre", length = 100)
 	private String nombre;
 	
+	@Size(min=1,message="Debe ingresar algun valor")
 	@Column(name = "prod_precio")
 	private double precio;
 	

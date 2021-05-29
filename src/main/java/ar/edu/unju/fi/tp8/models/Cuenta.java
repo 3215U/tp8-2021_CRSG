@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -25,12 +26,14 @@ public class Cuenta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
 	@Column(name = "cue_saldo")
 	private double saldo;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "cue_fechaCreacion")
 	private LocalDate fechaCreacion;
+	
 	
 	@Column(name = "cue_estado")
 	private String estado;

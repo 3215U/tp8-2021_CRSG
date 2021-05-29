@@ -1,7 +1,5 @@
 package ar.edu.unju.fi.tp8.models;
 
-
-
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,9 +26,11 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Size(min=1,message="Debe ingresar algun valor")
 	@Column(name = "com_cantidad")
 	private int cantidad;
 	
+	@Size(min=1,message="Debe ingresar algun valor")
 	@Column(name = "com_total")
 	private double total;
 	
@@ -37,12 +38,6 @@ public class Compra {
 	@ManyToOne
 	@JoinColumn(name = "pro_id", nullable = false, updatable = false)
 	private Producto producto;
-	
-	
-
-	
-
-
 
 	public Compra() {
 		// TODO Auto-generated constructor stub
